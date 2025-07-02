@@ -69,3 +69,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# IDE and Editor specific files
+.vs/          # Visual Studio files
+.idea/        # JetBrains IDEs (IntelliJ, Rider, PyCharm, etc.) files
+
