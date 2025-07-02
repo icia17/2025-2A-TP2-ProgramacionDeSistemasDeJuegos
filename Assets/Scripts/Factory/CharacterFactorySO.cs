@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptables/CharacterFactory")]
-public class CharacterFactorySO : ScriptableObject, ICharacterButtonFactory
+public class CharacterFactorySO : ScriptableObject, ICharacterFactory
 {
     [SerializeField] private CharacterData characterData;
     

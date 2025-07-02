@@ -8,7 +8,7 @@ public class CharacterSpawner : MonoBehaviour
 {
     public static CharacterSpawner Instance { get; private set; }
     
-    [SerializeField] private List<InterfaceRef<ICharacterButtonFactory>> buttonFactories;
+    [SerializeField] private List<InterfaceRef<ICharacterFactory>> buttonFactories;
     [SerializeField] private Transform buttonsParent;
     
     private void Awake()

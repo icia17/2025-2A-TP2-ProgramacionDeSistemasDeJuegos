@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public interface ICharacterButtonFactory
+public interface ICharacterFactory
 {
     GameObject CreateConfiguredButton(Transform parent);
 }
