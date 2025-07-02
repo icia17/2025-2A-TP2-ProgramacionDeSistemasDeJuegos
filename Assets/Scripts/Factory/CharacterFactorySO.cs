@@ -5,11 +5,9 @@ public class CharacterFactorySO : ScriptableObject, ICharacterButtonFactory
 {
     [SerializeField] private CharacterData characterData;
     
-    public CharacterData Data => characterData;
-    
     public GameObject CreateConfiguredButton(Transform parent)
     {
-        var buttonObject = Instantiate(characterData.buttonPrefab, parent);
+        var buttonObject = Instantiate(characterData.buttonData.buttonPrefab, parent);
         
         if (buttonObject.TryGetComponent<ISetup<CharacterData>>(out var setupComponent))
         {

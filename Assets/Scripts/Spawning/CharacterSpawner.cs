@@ -35,7 +35,7 @@ public class CharacterSpawner : MonoBehaviour
         }
     }
     
-    public void Spawn(CharacterData data)
+    public void Spawn(PlayerData data)
     {
         if (data.characterPrefab == null)
         {
@@ -47,7 +47,7 @@ public class CharacterSpawner : MonoBehaviour
         ConfigureCharacter(characterInstance, data);
     }
     
-    private void ConfigureCharacter(Character character, CharacterData data)
+    private void ConfigureCharacter(Character character, PlayerData data)
     {
         character.Setup(data.characterModel);
 

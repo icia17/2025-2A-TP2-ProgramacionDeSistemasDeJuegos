@@ -37,11 +37,11 @@ public class SpawnButton : MonoBehaviour, ISetup<CharacterData>
     public void Setup(CharacterData data)
     {
         characterData = data;
-        if (tmp) tmp.text = data.buttonText;
+        if (tmp) tmp.text = data.buttonData.buttonText;
     }
     
     public void HandleClick()
     {
-        CharacterSpawner.Instance?.Spawn(characterData);
+        CharacterSpawner.Instance?.Spawn(characterData.playerData);
     }
 }
