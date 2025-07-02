@@ -19,7 +19,7 @@ public class PlayAnimationCommand : ICommand
     {
         if (parameters.Length == 0)
         {
-            console.LogToConsole("Use: playanimation <nameofanimation> <duration (optional)>");
+            console.LogToConsole("Use: playanimation <nameofanimation> <duration> (duration is optional)");
             console.LogToConsole("Example: playanimation Jump 5");
             return;
         }
@@ -37,7 +37,11 @@ public class PlayAnimationCommand : ICommand
             }
         }
 
-        var characterAnimators = GameObject.FindObjectsOfType<CharacterAnimator>();
+        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("CharacterSprite");
+        var characterAnimators = taggedObjects
+            .Select(obj => obj.GetComponent<CharacterAnimator>())
+            .Where(anim => anim != null)
+            .ToArray();
 
         if (characterAnimators.Length == 0)
         {

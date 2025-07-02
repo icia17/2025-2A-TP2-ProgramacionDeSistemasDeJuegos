@@ -12,6 +12,7 @@ public class CommandConsole : MonoBehaviour
     [SerializeField] private TextMeshProUGUI logText;
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private Button executeButton;
+    [SerializeField] private Button openCloseButton;
     [SerializeField] private InputActionReference openCloseInput;
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private int maxLogEntries = 100;
@@ -31,7 +32,6 @@ public class CommandConsole : MonoBehaviour
 
     private void Start()
     {
-        SetConsoleVisibility(false);
         LogToConsole("=== Command Console Initialized ===");
         LogToConsole("Press F1 to Open/Close the Console");
         LogToConsole("Type help to check out all available commands!");
@@ -51,6 +51,7 @@ public class CommandConsole : MonoBehaviour
             executeButton.onClick.AddListener(ExecuteCommand);
         
         openCloseInput.action.performed += ToggleConsole;
+        openCloseButton.onClick.AddListener(SetConsoleVisibility);
 
         if (inputField != null)
         {
@@ -147,18 +148,18 @@ public class CommandConsole : MonoBehaviour
 
     public void ToggleConsole(InputAction.CallbackContext callbackContext)
     {
-        SetConsoleVisibility(!isConsoleOpen);
+        SetConsoleVisibility();
     }
 
-    private void SetConsoleVisibility(bool visible)
+    private void SetConsoleVisibility()
     {
-        isConsoleOpen = visible;
+        isConsoleOpen = !isConsoleOpen;
         if (consolePanel != null)
         {
-            consolePanel.SetActive(visible);
+            consolePanel.SetActive(isConsoleOpen);
         }
 
-        if (visible && inputField != null)
+        if (isConsoleOpen && inputField != null)
         {
             inputField.ActivateInputField();
         }
