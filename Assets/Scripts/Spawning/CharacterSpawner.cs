@@ -1,26 +1,63 @@
+using System;
+using System.Collections.Generic;
+using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterSpawner : MonoBehaviour
 {
-    [SerializeField] private Character prefab;
-    [SerializeField] private CharacterModel characterModel;
-    [SerializeField] private PlayerControllerModel controllerModel;
-    [SerializeField] private RuntimeAnimatorController animatorController;
-
-    public void Spawn()
+    public static CharacterSpawner Instance { get; private set; }
+    
+    [SerializeField] private List<InterfaceRef<ICharacterButtonFactory>> buttonFactories;
+    [SerializeField] private Transform buttonsParent;
+    
+    private void Awake()
     {
-        var result = Instantiate(prefab, transform.position, transform.rotation);
-        if (!result.TryGetComponent(out Character character))
-            character = result.gameObject.AddComponent<Character>();
-        character.Setup(characterModel);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-        if (!result.TryGetComponent(out PlayerController controller))
-            controller = result.gameObject.AddComponent<PlayerController>();
-        controller.Setup(controllerModel);
+        Instance = this;
+    }
 
-        var animator = result.GetComponentInChildren<Animator>();
+    private void Start()
+    {
+        CreateButtons();
+    }
+    
+    private void CreateButtons()
+    {
+        foreach (var factory in buttonFactories)
+        {
+            factory.Ref.CreateConfiguredButton(buttonsParent);
+        }
+    }
+    
+    public void Spawn(CharacterData data)
+    {
+        if (data.characterPrefab == null)
+        {
+            Debug.LogError("Character prefab is null!");
+            return;
+        }
+
+        var characterInstance = Instantiate(data.characterPrefab, transform.position, transform.rotation);
+        ConfigureCharacter(characterInstance, data);
+    }
+    
+    private void ConfigureCharacter(Character character, CharacterData data)
+    {
+        character.Setup(data.characterModel);
+
+        if (!character.TryGetComponent(out PlayerController controller))
+            controller = character.gameObject.AddComponent<PlayerController>();
+        controller.Setup(data.controllerModel);
+
+        var animator = character.GetComponentInChildren<Animator>();
         if (!animator)
-            animator = result.gameObject.AddComponent<Animator>();
-        animator.runtimeAnimatorController = animatorController;
+            animator = character.gameObject.AddComponent<Animator>();
+        animator.runtimeAnimatorController = data.animatorController;
     }
 }

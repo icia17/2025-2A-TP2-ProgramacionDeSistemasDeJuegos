@@ -1,11 +1,14 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpawnButton : MonoBehaviour
+public class SpawnButton : MonoBehaviour, ISetup<CharacterData>
 {
     [SerializeField] private Button button;
-
+    [SerializeField] private TextMeshProUGUI tmp;
+    private CharacterData characterData;
+    
     private void Reset()
         => button = GetComponent<Button>();
 
@@ -31,9 +34,14 @@ public class SpawnButton : MonoBehaviour
         button?.onClick?.RemoveListener(HandleClick);
     }
 
-    private void HandleClick()
+    public void Setup(CharacterData data)
     {
-        var spawner = FindFirstObjectByType<CharacterSpawner>();
-        spawner.Spawn();
+        characterData = data;
+        if (tmp) tmp.text = data.buttonText;
+    }
+    
+    public void HandleClick()
+    {
+        CharacterSpawner.Instance?.Spawn(characterData);
     }
 }
