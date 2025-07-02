@@ -19,14 +19,26 @@ public class PlayAnimationCommand : ICommand
     {
         if (parameters.Length == 0)
         {
-            console.LogToConsole("Use: playanimation <nameofanimation>");
-            console.LogToConsole("Example: playanimation Jump");
+            console.LogToConsole("Use: playanimation <nameofanimation> <duration (optional)>");
+            console.LogToConsole("Example: playanimation Jump 5");
             return;
         }
 
         string animationName = parameters[0];
+        float duration = 5f; // Default duration
+
+        // Try parse optional duration
+        if (parameters.Length > 1)
+        {
+            if (!float.TryParse(parameters[1], out duration))
+            {
+                console.LogToConsole($"Invalid duration '{parameters[1]}'. Using default 5 seconds.");
+                duration = 5f;
+            }
+        }
+
         var characterAnimators = GameObject.FindObjectsOfType<CharacterAnimator>();
-        
+
         if (characterAnimators.Length == 0)
         {
             console.LogToConsole("No characters with CharacterAnimator were found in the scene");
@@ -39,10 +51,9 @@ public class PlayAnimationCommand : ICommand
             var animator = characterAnimator.GetComponentInParent<Animator>();
             if (animator != null)
             {
-                // Verify if the animation exists
                 if (HasAnimation(animator, animationName))
                 {
-                    animator.Play(animationName, 1);
+                    characterAnimator.PlayManualAnimation(animationName, duration);
                     successCount++;
                 }
                 else
@@ -54,13 +65,14 @@ public class PlayAnimationCommand : ICommand
 
         if (successCount > 0)
         {
-            console.LogToConsole($"Animation '{animationName}' played in {successCount} character/s.");
+            console.LogToConsole($"Animation '{animationName}' played in {successCount} character/s for {duration} second(s).");
         }
         else
         {
-            console.LogToConsole($"Couldnt play animation '{animationName}' in any character.");
+            console.LogToConsole($"Could not play animation '{animationName}' in any character.");
         }
     }
+
 
     private bool HasAnimation(Animator animator, string animationName)
     {

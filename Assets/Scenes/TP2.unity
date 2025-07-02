@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1119853032}
   m_HandleRect: {fileID: 1119853031}
   m_Direction: 2
-  m_Value: 0.999999
+  m_Value: 0.9999992
   m_Size: 0.54283434
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2608,6 +2608,7 @@ GameObject:
   - component: {fileID: 1990219676}
   - component: {fileID: 1990219675}
   - component: {fileID: 1990219674}
+  - component: {fileID: 1990219678}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2699,6 +2700,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1990219678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990219673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16aae6d58228de747833a4a27e4b184e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consolePanel: {fileID: 923881513}
+  logText: {fileID: 411129969}
+  inputField: {fileID: 702960384}
+  executeButton: {fileID: 1374456800}
+  openCloseInput: {fileID: -7366668041115176540, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  scrollRect: {fileID: 1357437174}
+  maxLogEntries: 100
 --- !u!1 &2011428494
 GameObject:
   m_ObjectHideFlags: 0

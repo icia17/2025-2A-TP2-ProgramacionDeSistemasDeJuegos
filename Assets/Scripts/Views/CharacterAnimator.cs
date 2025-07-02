@@ -8,6 +8,7 @@ public class CharacterAnimator : MonoBehaviour
     [SerializeField] private string speedParameter = "Speed";
     [SerializeField] private string isJumpingParameter = "IsJumping";
     [SerializeField] private string isFallingParameter = "IsFalling";
+    private float overrideTimer = 0f;
     
     private void Reset()
     {
@@ -37,10 +38,32 @@ public class CharacterAnimator : MonoBehaviour
 
     private void Update()
     {
+        if (overrideTimer > 0f)
+        {
+            overrideTimer -= Time.deltaTime;
+            
+            if (overrideTimer <= 0f)
+            {
+                animator.SetLayerWeight(0,1);
+                animator.SetLayerWeight(1,0);
+            }
+            
+            return; // Skip auto animation update while overriding
+        }
+        
         var speed = character.Velocity;
         animator.SetFloat(speedParameter, Mathf.Abs(speed.x));
         animator.SetBool(isJumpingParameter, character.Velocity.y > 0);
         animator.SetBool(isFallingParameter, character.Velocity.y < 0);
         spriteRenderer.flipX = speed.x < 0;
+    }
+    
+    public void PlayManualAnimation(string animationName, float duration)
+    {
+        animator.SetLayerWeight(0,0);
+        animator.SetLayerWeight(1,1);
+        
+        animator.Play(animationName, 1);
+        overrideTimer = duration;
     }
 }
