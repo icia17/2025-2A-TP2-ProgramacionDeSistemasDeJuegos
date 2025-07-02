@@ -8,7 +8,7 @@ public class CharacterAnimator : MonoBehaviour
     [SerializeField] private string speedParameter = "Speed";
     [SerializeField] private string isJumpingParameter = "IsJumping";
     [SerializeField] private string isFallingParameter = "IsFalling";
-
+    
     private void Reset()
     {
         character = GetComponentInParent<Character>();
