@@ -8,6 +8,7 @@ public class CharacterAnimator : MonoBehaviour
     [SerializeField] private string speedParameter = "Speed";
     [SerializeField] private string isJumpingParameter = "IsJumping";
     [SerializeField] private string isFallingParameter = "IsFalling";
+    [SerializeField] private string isTransitionAllowedParameter = "IsTransitionAllowed";
     private float overrideTimer = 0f;
     
     private void Reset()
@@ -41,12 +42,9 @@ public class CharacterAnimator : MonoBehaviour
         if (overrideTimer > 0f)
         {
             overrideTimer -= Time.deltaTime;
-            
+
             if (overrideTimer <= 0f)
-            {
-                animator.SetLayerWeight(0,1);
-                animator.SetLayerWeight(1,0);
-            }
+                animator.SetBool(isTransitionAllowedParameter, true);
             
             return; // Skip auto animation update while overriding
         }
@@ -60,10 +58,8 @@ public class CharacterAnimator : MonoBehaviour
     
     public void PlayManualAnimation(string animationName, float duration)
     {
-        animator.SetLayerWeight(0,0);
-        animator.SetLayerWeight(1,1);
-        
-        animator.Play(animationName, 1);
+        animator.SetBool(isTransitionAllowedParameter, false);
+        animator.Play(animationName);
         overrideTimer = duration;
     }
 }
