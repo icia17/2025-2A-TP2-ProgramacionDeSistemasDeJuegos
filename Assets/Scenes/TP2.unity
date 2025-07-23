@@ -1634,11 +1634,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e3cbb09dc2f39c46ba6b5b05b35b3c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonFactories:
-  - reference: {fileID: 11400000, guid: fd157f42fb212204ea15a2bbf419d475, type: 2}
-  - reference: {fileID: 11400000, guid: 8a031b8fe0e446a46a0cea32ae440a5d, type: 2}
-  - reference: {fileID: 11400000, guid: e9a44cb078c5b3b4f962799d23d46b2b, type: 2}
-  - reference: {fileID: 11400000, guid: a2dc6193000af45479f6c31a7851eea8, type: 2}
+  characterButtonFactories:
+  - {fileID: 11400000, guid: d65c7721aadcb9342abca80bc91a9c1d, type: 2}
+  - {fileID: 11400000, guid: 4cd85b3465857154cb5f124a0d5cab2d, type: 2}
+  - {fileID: 11400000, guid: 52f4fc37f1c15914db13fa512aaedfc1, type: 2}
+  - {fileID: 11400000, guid: 02fab241f3350584796c52cdba4d2ca7, type: 2}
   buttonsParent: {fileID: 1355819186}
 --- !u!1 &1315192096
 GameObject:

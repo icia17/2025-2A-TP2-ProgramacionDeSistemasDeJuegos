@@ -4,60 +4,27 @@ using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CharacterSpawner : MonoBehaviour
+public class CharacterSpawner : MonoBehaviour, ISpawnableFactoryCreator
 {
-    public static CharacterSpawner Instance { get; private set; }
-    
-    [SerializeField] private List<InterfaceRef<ICharacterFactory>> buttonFactories;
+    [SerializeField] private List<CharacterButtonFactorySO> characterButtonFactories;
     [SerializeField] private Transform buttonsParent;
     
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-    }
-
     private void Start()
     {
-        CreateButtons();
+        SpawnButtons();
     }
     
-    private void CreateButtons()
+    public void Spawn(ISpawnableFactory characterFactory)
     {
-        foreach (var factory in buttonFactories)
+        characterFactory.Spawn(transform);
+    }
+    
+    private void SpawnButtons()
+    {
+        foreach (var factory in characterButtonFactories)
         {
-            factory.Ref.CreateConfiguredButton(buttonsParent);
+            factory.Spawn(buttonsParent, this);
         }
     }
-    
-    public void Spawn(PlayerData data)
-    {
-        if (data.characterPrefab == null)
-        {
-            Debug.LogError("Character prefab is null!");
-            return;
-        }
 
-        var characterInstance = Instantiate(data.characterPrefab, transform.position, transform.rotation);
-        ConfigureCharacter(characterInstance, data);
-    }
-    
-    private void ConfigureCharacter(Character character, PlayerData data)
-    {
-        character.Setup(data.characterModel);
-
-        if (!character.TryGetComponent(out PlayerController controller))
-            controller = character.gameObject.AddComponent<PlayerController>();
-        controller.Setup(data.controllerModel);
-
-        var animator = character.GetComponentInChildren<Animator>();
-        if (!animator)
-            animator = character.gameObject.AddComponent<Animator>();
-        animator.runtimeAnimatorController = data.animatorController;
-    }
 }

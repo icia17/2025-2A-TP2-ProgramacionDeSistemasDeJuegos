@@ -1,13 +1,15 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpawnButton : MonoBehaviour, ISetup<CharacterData>
+public class SpawnButton : MonoBehaviour, ISetup<ButtonData>
 {
     [SerializeField] private Button button;
     [SerializeField] private TextMeshProUGUI tmp;
-    private CharacterData characterData;
+    private ISpawnableFactory spawnerFactory;
+    private ISpawnableFactoryCreator spawnerFactoryCreator;
     
     private void Reset()
         => button = GetComponent<Button>();
@@ -34,14 +36,23 @@ public class SpawnButton : MonoBehaviour, ISetup<CharacterData>
         button?.onClick?.RemoveListener(HandleClick);
     }
 
-    public void Setup(CharacterData data)
+    public void SetupFactoryCreator(ISpawnableFactoryCreator factory)
     {
-        characterData = data;
-        if (tmp) tmp.text = data.buttonData.buttonText;
+        if (factory == null)
+            Debug.LogError("The factory creator being set is null!");
+        else
+            spawnerFactoryCreator = factory;
+    }
+    
+    public void Setup(ButtonData buttonData)
+    {
+        if (tmp) tmp.text = buttonData.buttonText;
+
+        spawnerFactory = buttonData.spawnerFactory.Ref;
     }
     
     public void HandleClick()
     {
-        CharacterSpawner.Instance?.Spawn(characterData.playerData);
+        spawnerFactoryCreator.Spawn(spawnerFactory);
     }
 }

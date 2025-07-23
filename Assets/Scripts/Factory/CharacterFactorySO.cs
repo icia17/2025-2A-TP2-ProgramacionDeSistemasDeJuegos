@@ -1,19 +1,29 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Scriptables/CharacterFactory")]
-public class CharacterFactorySO : ScriptableObject, ICharacterFactory
+public class CharacterFactorySO : ScriptableObject, ISpawnableFactory
 {
-    [SerializeField] private CharacterData characterData;
-    
-    public GameObject CreateConfiguredButton(Transform parent)
+    [SerializeField] private PlayerData playerData;
+
+    public void Spawn(Transform characterTransform, ISpawnableFactoryCreator creator = null)
     {
-        var buttonObject = Instantiate(characterData.buttonData.buttonPrefab, parent);
+        var characterInstance = Instantiate(playerData.characterPrefab, characterTransform.position, characterTransform.rotation);
         
-        if (buttonObject.TryGetComponent<ISetup<CharacterData>>(out var setupComponent))
-        {
-            setupComponent.Setup(characterData);
-        }
-        
-        return buttonObject.gameObject;
+        ConfigureCharacter(characterInstance);
+    }
+    
+    private void ConfigureCharacter(Character character)
+    {
+        character.Setup(playerData.characterModel);
+
+        if (!character.TryGetComponent(out PlayerController controller))
+            controller = character.gameObject.AddComponent<PlayerController>();
+        controller.Setup(playerData.controllerModel);
+
+        var animator = character.GetComponentInChildren<Animator>();
+        if (!animator)
+            animator = character.gameObject.AddComponent<Animator>();
+        animator.runtimeAnimatorController = playerData.animatorController;
     }
 }
