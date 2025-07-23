@@ -14,11 +14,13 @@ public class CharacterSpawner : MonoBehaviour, ISpawnableFactoryCreator
         SpawnButtons();
     }
     
+    // Method used for spawning characters
     public void Spawn(ISpawnableFactory characterFactory)
     {
         characterFactory.Spawn(transform);
     }
     
+    // Method used for spawning the buttons that spawn the characters
     private void SpawnButtons()
     {
         foreach (var factory in characterButtonFactories)

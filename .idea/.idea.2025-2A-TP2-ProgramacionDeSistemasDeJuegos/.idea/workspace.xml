@@ -5,30 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e22c33-d38e-4a93-acfa-e5a43764f3ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Factory/CharacterButtonFactorySO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Factory/CharacterButtonFactorySO.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2025-2A-TP2-ProgramacionDeSistemasDeJuegos/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2025-2A-TP2-ProgramacionDeSistemasDeJuegos/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/External/Pixel Adventure/Main Characters/Virtual Guy/Character.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/External/Pixel Adventure/Main Characters/Virtual Guy/Character.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TP2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TP2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scriptables/MaskDudeFactory.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scriptables/MaskDudeFactory.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scriptables/NinjaFrogFactory.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scriptables/NinjaFrogFactory.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scriptables/PinkManFactory.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scriptables/PinkManFactory.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scriptables/VirtualGuyFactory.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scriptables/VirtualGuyFactory.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/ISetup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/ISetup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Factory/CharacterFactorySO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Factory/CharacterFactorySO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Factory/ICharacterFactory.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Factory/ICharacterFactory.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spawning/CharacterSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spawning/CharacterSpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spawning/SpawnButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spawning/SpawnButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Structs/ButtonData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Structs/ButtonData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Structs/CharacterData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Structs/CharacterData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Structs/PlayerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Structs/PlayerData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +92,8 @@
       <updated>1753190520359</updated>
       <workItem from="1753190520393" duration="328000" />
       <workItem from="1753191118560" duration="31945000" />
-      <workItem from="1753276319122" duration="2060000" />
+      <workItem from="1753276319122" duration="11300000" />
+      <workItem from="1753300521414" duration="502000" />
     </task>
     <servers />
   </component>
